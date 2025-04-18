@@ -1,0 +1,8 @@
+name: NormalSkyblock
+version: '1.0'
+main: me.cyperion.normalskyblock.NormalSkyblock
+api-version: '1.21'
+commands:
+  test:
+    description: '向 NPC 發送請求'
+    usage: '/test <請求內容>'

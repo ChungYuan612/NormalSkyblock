@@ -27,6 +27,7 @@ public class TestCommand implements CommandExecutor {
 //            Utils.sendMessage(player, MessageLevel.NORMAL, "已向 NPC 發送請求");
 //            String response = this.plugin.getNgrokConnection().request(args[0]);
 //            Utils.sendMessage(player, MessageLevel.NORMAL, "NPC 回應: " + response);
+
             //AI Studio連接
             Utils.sendMessage(player, MessageLevel.NORMAL, "已向 AI Studio 發送請求");
             GeminiResponseParser.GeminiResponse response = this.plugin.getGeminiAPI().getResponse(args[0]);
@@ -39,6 +40,7 @@ public class TestCommand implements CommandExecutor {
 
             Utils.sendMessage(player, MessageLevel.NORMAL, "&f "+aiResponse);
             Utils.sendMessage(player, MessageLevel.NORMAL, "&2回應完畢");
+            return true;
         }
 
         return true;

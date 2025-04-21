@@ -8,6 +8,8 @@ me\cyperion\normalskyblock\GeminiConnection\GeminiClient.class
 me\cyperion\normalskyblock\Utils\MessageLevel.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiRequestBuilder.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$GeminiResponse.class
+me\cyperion\normalskyblock\GeminiConnection\GeminiConversationManager.class
+me\cyperion\normalskyblock\GeminiConnection\GeminiMessage.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Part.class
 me\cyperion\normalskyblock\Commands\TestCommand.class

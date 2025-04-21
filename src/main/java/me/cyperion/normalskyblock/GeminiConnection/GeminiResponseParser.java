@@ -1,6 +1,7 @@
 package me.cyperion.normalskyblock.GeminiConnection;
-
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -87,3 +88,4 @@ public class GeminiResponseParser {
         public int tokenCount;
     }
 }
+

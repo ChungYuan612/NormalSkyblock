@@ -1,7 +1,7 @@
 package me.cyperion.normalskyblock.GeminiConnection;
 
+import me.cyperion.normalskyblock.GeminiConnection.GeminiResponseParser.GeminiResponse;
 import me.cyperion.normalskyblock.NormalSkyblock;
-import org.checkerframework.checker.units.qual.A;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -17,11 +17,11 @@ public class GeminiAPI {
     }
 
     @Nullable
-    public GeminiResponseParser.GeminiResponse getResponse(String text) {
+    public GeminiResponse getResponse(String text) {
         GeminiClient geminiClient = new GeminiClient(API_KEY);
         try {
             String response = geminiClient.sendPrompt(text);
-            GeminiResponseParser.GeminiResponse gResponse = GeminiResponseParser.parse(response);
+            GeminiResponse gResponse = GeminiResponseParser.parse(response);
             System.out.println("模型回答：\n" + gResponse.getFirstTextResponse());
             return gResponse;
 

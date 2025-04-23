@@ -17,13 +17,12 @@ public class GeminiAPI {
     }
 
     @Nullable
-    public GeminiResponse getResponse(String text) {
-        GeminiClient geminiClient = new GeminiClient(API_KEY);
+    public String getResponse(String text) {
+        //GeminiClient geminiClient = new GeminiClient(API_KEY);
         try {
             String response = geminiClient.sendPrompt(text);
-            GeminiResponse gResponse = GeminiResponseParser.parse(response);
-            System.out.println("模型回答：\n" + gResponse.getFirstTextResponse());
-            return gResponse;
+            System.out.println("模型回答：\n" + response);
+            return response;
 
         } catch (IOException | InterruptedException e) {
             System.err.println("錯誤：" + e.getMessage());

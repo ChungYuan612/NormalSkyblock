@@ -5,6 +5,9 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 負責與Gemini對話的主程式
+ */
 public class GeminiClient {
     private static final String MODEL_NAME = "gemini-2.0-flash";
     private static final String API_URL
@@ -17,6 +20,11 @@ public class GeminiClient {
         this.apiKey = apiKey;
     }
 
+    /**
+     *
+     * @param promptText 給Gemin的文字
+     * @return Gemini 回傳的結果(提取文字完畢)
+     */
     public String sendPrompt(String promptText) throws IOException, InterruptedException {
         // 加入使用者訊息
         conversationManager.addUserMessage(promptText);
@@ -28,11 +36,12 @@ public class GeminiClient {
         GeminiHttpHelper.sendRequest(connection, requestBody);
         // 讀取回應
         String response = GeminiHttpHelper.readResponse(connection);
-
-        // 👉 你之後可以用 GeminiResponseParser 把這邊抽出回應文字（目前先直接儲存）
-        conversationManager.addModelMessage(response);
-
-        return response;
+        System.out.println("raw response: " + response);
+        String replyText = GeminiResponseParser.extractModelReply(response);
+        if (replyText != null) {
+            conversationManager.addModelMessage(replyText);
+        }
+        return replyText != null ? replyText : response;
     }
 
     public void clearConversation() {

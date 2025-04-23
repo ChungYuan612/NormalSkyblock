@@ -11,6 +11,7 @@ me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$GeminiResponse.
 me\cyperion\normalskyblock\GeminiConnection\GeminiConversationManager.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiMessage.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser.class
+me\cyperion\normalskyblock\Event\GeminiChatListener.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Part.class
 me\cyperion\normalskyblock\Commands\TestCommand.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Candidate.class

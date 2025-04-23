@@ -1,8 +1,9 @@
 package me.cyperion.normalskyblock.GeminiConnection;
+
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.annotations.SerializedName;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -14,6 +15,29 @@ public class GeminiResponseParser {
     public static GeminiResponse parse(String json) {
         return gson.fromJson(json, GeminiResponse.class);
     }
+    /**
+     * 解析 Gemini API 回傳的 JSON 並取得 model 回覆的文字
+     * @param jsonResponse API 回傳的 JSON 字串
+     * @return model 的文字回覆；若找不到則回傳 null
+     */
+    public static String extractModelReply(String jsonResponse) {
+        try {
+            JSONObject root = new JSONObject(jsonResponse);
+            JSONArray candidates = root.getJSONArray("candidates");
+            if (candidates.isEmpty()) return null;
+
+            JSONObject content = candidates.getJSONObject(0).getJSONObject("content");
+            JSONArray parts = content.getJSONArray("parts");
+            if (parts.isEmpty()) return null;
+
+            return parts.getJSONObject(0).getString("text");
+        } catch (Exception e) {
+            System.err.println("Failed to parse Gemini response: " + e.getMessage());
+            return null;
+        }
+    }
+
+
 
     // 主體類別：代表整份 Gemini API 回傳內容
     public static class GeminiResponse {

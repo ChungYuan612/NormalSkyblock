@@ -1,6 +1,7 @@
 package me.cyperion.normalskyblock;
 
 import me.cyperion.normalskyblock.Commands.TestCommand;
+import me.cyperion.normalskyblock.Event.GeminiChatListener;
 import me.cyperion.normalskyblock.GeminiConnection.GeminiAPI;
 import me.cyperion.normalskyblock.GeminiConnection.GeminiClient;
 import me.cyperion.normalskyblock.NPC.NgrokConnection;
@@ -10,6 +11,7 @@ public final class NormalSkyblock extends JavaPlugin {
 
     private NgrokConnection ngrokConnection;
     private GeminiAPI geminiAPI;
+    private GeminiChatListener geminiChatListener;
 
     @Override
     public void onEnable() {
@@ -18,6 +20,8 @@ public final class NormalSkyblock extends JavaPlugin {
         //ngrokConnection = new NgrokConnection(this);
         geminiAPI = new GeminiAPI(this);
         getCommand("test").setExecutor(new TestCommand(this));
+        geminiChatListener = new GeminiChatListener(this);
+        getServer().getPluginManager().registerEvents(geminiChatListener,this);
     }
 
     @Override
@@ -31,5 +35,9 @@ public final class NormalSkyblock extends JavaPlugin {
 
     public GeminiAPI getGeminiAPI() {
         return geminiAPI;
+    }
+
+    public GeminiChatListener getGeminiListener() {
+        return geminiChatListener;
     }
 }

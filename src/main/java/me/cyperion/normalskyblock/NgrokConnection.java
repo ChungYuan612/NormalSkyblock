@@ -1,4 +1,4 @@
-package me.cyperion.normalskyblock.NPC;
+package me.cyperion.normalskyblock;
 
 import me.cyperion.normalskyblock.NormalSkyblock;
 
@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
+@Deprecated
 public class NgrokConnection {
 
     public static final String CONNECT_REQUEST_ERROR = "連線請求錯誤";

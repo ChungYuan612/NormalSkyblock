@@ -2,6 +2,8 @@ package me.cyperion.normalskyblock.GeminiConnection;
 
 import me.cyperion.normalskyblock.GeminiConnection.GeminiResponseParser.GeminiResponse;
 import me.cyperion.normalskyblock.NormalSkyblock;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -10,10 +12,24 @@ public class GeminiAPI {
     private NormalSkyblock plugin;
 
     public static final String API_KEY = "AIzaSyBjh_4uy7i4lbxZyYl-_hiV4QXLziHq8C0";
-    public static GeminiClient geminiClient = new GeminiClient(API_KEY);
+    public GeminiClient geminiClient;
 
     public GeminiAPI(NormalSkyblock plugin) {
         this.plugin = plugin;
+        geminiClient = new GeminiClient(plugin,API_KEY);
+    }
+
+    public String getResponse(String text, Player player , Villager villager) {
+        //GeminiClient geminiClient = new GeminiClient(API_KEY);
+        try {
+            String response = geminiClient.sendPrompt(text, player,villager);
+            System.out.println("模型回答：\n" + response);
+            return response;
+
+        } catch (IOException | InterruptedException e) {
+            System.err.println("錯誤：" + e.getMessage());
+        }
+        return null;
     }
 
     @Nullable
@@ -32,13 +48,13 @@ public class GeminiAPI {
 
     public void refreshAPIKey() {
         plugin.getConfig().getString("api-key");
-        geminiClient = new GeminiClient(API_KEY);
+        geminiClient = new GeminiClient(plugin,API_KEY);
     }
 
     public void test(String text) {
         //text = "我要怎麼讓你記住剛才的話?";
 
-        GeminiClient geminiClient = new GeminiClient(API_KEY);
+        GeminiClient geminiClient = new GeminiClient(plugin,API_KEY);
 
         try {
             String response = geminiClient.sendPrompt(text);

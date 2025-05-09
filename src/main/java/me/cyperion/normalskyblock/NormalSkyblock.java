@@ -3,8 +3,6 @@ package me.cyperion.normalskyblock;
 import me.cyperion.normalskyblock.Commands.TestCommand;
 import me.cyperion.normalskyblock.Event.GeminiChatListener;
 import me.cyperion.normalskyblock.GeminiConnection.GeminiAPI;
-import me.cyperion.normalskyblock.GeminiConnection.GeminiClient;
-import me.cyperion.normalskyblock.NPC.NgrokConnection;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class NormalSkyblock extends JavaPlugin {

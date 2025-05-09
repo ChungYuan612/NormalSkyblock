@@ -1,36 +1,44 @@
 package me.cyperion.normalskyblock.GeminiConnection;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversation;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
 public class GeminiRequestBuilder {
-//    public static String build(String promptText) {
-//        return "{ \"contents\": [{ \"parts\": [{ \"text\": \"" + escapeJson(promptText) + "\" }] }] }";
-//    }
-//
-//    private static String escapeJson(String text) {
-//        return text.replace("\"", "\\\"").replace("\n", "\\n");
-//    }
+    private static final SystemInstructionManager instructionManager = new SystemInstructionManager();
 
-    public static String build(List<GeminiMessage> messages) {
-        JsonObject request = new JsonObject();
-        JsonArray contents = new JsonArray();
-
-        for (GeminiMessage message : messages) {
-            JsonObject content = new JsonObject();
-            content.addProperty("role", message.getRole());
-            JsonArray parts = new JsonArray();
-            JsonObject part = new JsonObject();
-            part.addProperty("text", message.getText());
-            parts.add(part);
-            content.add("parts", parts);
-            contents.add(content);
-        }
-
-        request.add("contents", contents);
-        return request.toString();
+    public void setSystemMessage(String message) {
+        instructionManager.setSystemMessage(message);
     }
 
+    public void clearSystemMessage() {
+        instructionManager.clearSystemMessage();
+    }
+
+    public String build(List<GeminiMessage> messages) {
+        JSONObject request = new JSONObject();
+
+
+        if (instructionManager.hasSystemMessage()) {
+            request.put("system_instruction", instructionManager.buildSystemInstructionJson());
+
+        }
+        JSONArray contentArray = new JSONArray();
+        for (GeminiMessage message : messages) {
+            JSONObject messageObject = new JSONObject();
+            messageObject.put("role", message.getRole());
+
+            JSONArray partsArray = new JSONArray();
+            partsArray.put(new JSONObject().put("text", message.getText()));
+            messageObject.put("parts", partsArray);
+
+            contentArray.put(messageObject);
+        }
+
+        request.put("contents", contentArray);
+        return request.toString();
+    }
 }
+

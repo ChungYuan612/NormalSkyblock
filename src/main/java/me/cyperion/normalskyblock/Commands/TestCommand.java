@@ -50,10 +50,12 @@ public class TestCommand implements CommandExecutor {
             }
             villager.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,10000,5,false,false));
             //不要動
+
             Utils.sendMessage(player, MessageLevel.NORMAL
                     , "&b["+player.getName()+"]: &f"+args[0]);
             Utils.sendMessage(player, MessageLevel.NORMAL, "已向 AI Studio 發送請求");
             String response = this.plugin.getGeminiAPI().getResponse(args[0],player,villager);
+
             if(response == null){
                 Utils.sendMessage(player, MessageLevel.ERROR, "GeminiAPI getResponse 回應錯誤");
                 return false;

@@ -1,5 +1,7 @@
 package me.cyperion.normalskyblock.GeminiConnection;
 
+import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.ConversationMessageAction;
+import me.cyperion.normalskyblock.GeminiConnection.NPC.TradeOfferProcessor;
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversation;
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversationManager;
 import me.cyperion.normalskyblock.NormalSkyblock;
@@ -9,6 +11,7 @@ import org.bukkit.entity.Villager;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,11 +25,13 @@ public class GeminiClient {
     private final String apiKey;
     private final GeminiConversationManager conversationManager = new GeminiConversationManager();
     private final VillagerConversationManager villagerConversationManager;
+    private final TradeOfferProcessor processor;
 
     public GeminiClient(NormalSkyblock plugin, String apiKey) {
         this.plugin = plugin;
         this.apiKey = apiKey;
         villagerConversationManager = new VillagerConversationManager(plugin);
+        processor = new TradeOfferProcessor(plugin.getLogger());
     }
 
     /**
@@ -61,7 +66,7 @@ public class GeminiClient {
     public String sendPrompt(String promptText,Player player, Villager villager) throws IOException, InterruptedException {
         // 加入使用者訊息
 
-        conversationManager.addUserMessage(promptText);
+        //conversationManager.addUserMessage(promptText);
         GeminiRequestBuilder builder = new GeminiRequestBuilder();
         VillagerConversation conv = villagerConversationManager.getConversation(player);
         if(conv == null){
@@ -81,9 +86,13 @@ public class GeminiClient {
         String response = GeminiHttpHelper.readResponse(connection);
         System.out.println("raw response: " + response);
         String replyText = GeminiResponseParser.extractModelReply(response);
+        //處理特殊格式的回覆
+        Collection<ConversationMessageAction> actions = processor.processMessage(replyText,conv);
+        if(actions != null)
+            actions.forEach(ConversationMessageAction::run);
         if (replyText != null) {
-            conv.addMessage(new GeminiMessage("user",replyText));
-            conversationManager.addModelMessage(replyText);
+            conv.addMessage(new GeminiMessage("model",replyText));
+            //conversationManager.addModelMessage(replyText);
         }
         return replyText != null ? replyText : response;
     }

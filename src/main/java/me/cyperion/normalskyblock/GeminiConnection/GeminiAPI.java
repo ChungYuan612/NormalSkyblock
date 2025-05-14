@@ -11,7 +11,7 @@ import java.io.IOException;
 public class GeminiAPI {
     private NormalSkyblock plugin;
 
-    public static final String API_KEY = "AIzaSyBjh_4uy7i4lbxZyYl-_hiV4QXLziHq8C0";
+    public static final String API_KEY = "AIzaSyCPoPwxDsRheQGIf1zy6o1lL7hhefNW5GQ";
     public GeminiClient geminiClient;
 
     public GeminiAPI(NormalSkyblock plugin) {
@@ -19,10 +19,12 @@ public class GeminiAPI {
         geminiClient = new GeminiClient(plugin,API_KEY);
     }
 
+
     public String getResponse(String text, Player player , Villager villager) {
         //GeminiClient geminiClient = new GeminiClient(API_KEY);
         try {
             String response = geminiClient.sendPrompt(text, player,villager);
+
             System.out.println("模型回答：\n" + response);
             return response;
 

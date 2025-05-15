@@ -1,4 +1,4 @@
-package tj.horner.villagergpt.conversation.pipeline.actions
+package me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.actions
 
 import org.bukkit.entity.Villager
 import org.bukkit.inventory.MerchantRecipe

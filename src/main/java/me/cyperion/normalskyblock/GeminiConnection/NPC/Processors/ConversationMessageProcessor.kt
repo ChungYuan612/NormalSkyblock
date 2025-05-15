@@ -1,4 +1,4 @@
-package me.cyperion.normalskyblock.GeminiConnection.NPC
+package me.cyperion.normalskyblock.GeminiConnection.NPC.Processors
 
 import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.ConversationMessageAction
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversation

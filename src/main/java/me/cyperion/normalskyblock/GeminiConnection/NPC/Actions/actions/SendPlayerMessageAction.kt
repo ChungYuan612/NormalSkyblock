@@ -1,4 +1,4 @@
-package tj.horner.villagergpt.conversation.pipeline.actions
+package me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.actions;
 
 import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.ConversationMessageAction
 import net.kyori.adventure.text.Component

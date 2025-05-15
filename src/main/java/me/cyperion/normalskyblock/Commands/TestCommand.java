@@ -60,10 +60,9 @@ public class TestCommand implements CommandExecutor {
                 Utils.sendMessage(player, MessageLevel.ERROR, "GeminiAPI getResponse 回應錯誤");
                 return false;
             }
-            Utils.sendMessage(player, MessageLevel.NORMAL, "&3NPC回應: ");
-
-            Utils.sendMessage(player, MessageLevel.NORMAL, "&f "+response);
-            Utils.sendMessage(player, MessageLevel.NORMAL, "&2回應完畢");
+            //Utils.sendMessage(player, MessageLevel.NORMAL, "&3NPC回應: ");
+            //Utils.sendMessage(player, MessageLevel.NORMAL, "&f "+response);
+            //Utils.sendMessage(player, MessageLevel.NORMAL, "&2回應完畢");
             return true;
         }
         if(plugin.getGeminiListener().isPlayerActive(player)){

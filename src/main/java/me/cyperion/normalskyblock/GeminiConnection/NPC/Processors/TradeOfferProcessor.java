@@ -1,4 +1,4 @@
-package me.cyperion.normalskyblock.GeminiConnection.NPC;
+package me.cyperion.normalskyblock.GeminiConnection.NPC.Processors;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,6 +11,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.ConversationMessageAction;
+import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.actions.SendPlayerMessageAction;
+import me.cyperion.normalskyblock.GeminiConnection.NPC.Actions.actions.SetTradesAction;
+import me.cyperion.normalskyblock.GeminiConnection.NPC.MessageFormatter;
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversation;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.ComponentBuilder;
@@ -22,8 +25,6 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MerchantRecipe;
-import tj.horner.villagergpt.conversation.pipeline.actions.SendPlayerMessageAction;
-import tj.horner.villagergpt.conversation.pipeline.actions.SetTradesAction;
 
 public class TradeOfferProcessor implements ConversationMessageProcessor {
     private final Logger logger;

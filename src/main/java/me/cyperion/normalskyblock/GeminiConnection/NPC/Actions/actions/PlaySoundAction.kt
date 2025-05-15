@@ -1,4 +1,4 @@
-package tj.horner.villagergpt.conversation.pipeline.actions
+package me.cyperion.normalskyblock.NPC.Actions.actions
 
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player

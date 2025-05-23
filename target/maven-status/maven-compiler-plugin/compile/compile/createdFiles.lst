@@ -1,11 +1,14 @@
 me\cyperion\normalskyblock\Utils\Utils.class
 me\cyperion\normalskyblock\NPC\NPCore.class
-me\cyperion\normalskyblock\GeminiConnection\NPC\TradeOfferProcessor$1.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiHttpHelper.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$UsageMetadata.class
+me\cyperion\normalskyblock\GeminiConnection\NPC\Processors\TradeOfferProcessor.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiRequestBuilder.class
+me\cyperion\normalskyblock\GeminiConnection\NPC\ConversationMessageTransformer.class
+me\cyperion\normalskyblock\GeminiConnection\NPC\Processors\TradeOfferProcessor$1.class
 me\cyperion\normalskyblock\GeminiConnection\Prompt\VillagerConversationManager.class
 me\cyperion\normalskyblock\NgrokConnection.class
+me\cyperion\normalskyblock\GeminiConnection\NPC\Processors\ActionProcessor.class
 me\cyperion\normalskyblock\GeminiConnection\SystemInstructionManager.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiAPI.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Content.class
@@ -17,8 +20,9 @@ me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Part.class
 me\cyperion\normalskyblock\GeminiConnection\NPC\MessageFormatter.class
 me\cyperion\normalskyblock\Commands\TestCommand.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser$Candidate.class
-me\cyperion\normalskyblock\GeminiConnection\NPC\TradeOfferProcessor.class
 me\cyperion\normalskyblock\NormalSkyblock.class
+me\cyperion\normalskyblock\Event\ConversationSession.class
+me\cyperion\normalskyblock\Commands\TalkCommand.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiClient.class
 me\cyperion\normalskyblock\Utils\MessageLevel.class
 me\cyperion\normalskyblock\GeminiConnection\GeminiResponseParser.class

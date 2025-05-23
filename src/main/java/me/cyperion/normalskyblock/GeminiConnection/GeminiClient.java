@@ -8,6 +8,7 @@ import me.cyperion.normalskyblock.GeminiConnection.NPC.Processors.TradeOfferProc
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversation;
 import me.cyperion.normalskyblock.GeminiConnection.Prompt.VillagerConversationManager;
 import me.cyperion.normalskyblock.NormalSkyblock;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 
@@ -35,12 +36,12 @@ public class GeminiClient {
         this.apiKey = apiKey;
         villagerConversationManager = new VillagerConversationManager(plugin);
 
-        processors.add(new TradeOfferProcessor(plugin.getLogger()));
         processors.add(new ActionProcessor());
+        processors.add(new TradeOfferProcessor(plugin.getLogger()));
     }
 
     /**
-     *
+     * **(舊版)**
      * @param promptText 給Gemin的文字
      * @return Gemini 回傳的結果(提取文字完畢)
      */
@@ -73,16 +74,15 @@ public class GeminiClient {
 
         //conversationManager.addUserMessage(promptText);
         GeminiRequestBuilder builder = new GeminiRequestBuilder();
-        VillagerConversation conv = villagerConversationManager.getConversation(player);
-        if(conv == null){
+        VillagerConversation conv = villagerConversationManager.getConversation(villager);
+        if(conv == null || !conv.getPlayer().getUniqueId().equals(player.getUniqueId())){
             conv  = villagerConversationManager.startConversation(player,villager);
             builder.setSystemMessage(conv.generateSystemPrompt());
         }
-        if(conv.hasPlayerLeft())
-            return "你離太遠了";
+
         conv.addMessage(new GeminiMessage("user",promptText));
         String requestBody = builder.build(conv.getMessages());
-        System.out.println(requestBody);
+        //System.out.println(requestBody);
         HttpURLConnection connection = GeminiHttpHelper
                 .createPostConnection(API_URL + "?key=" + apiKey);
 
@@ -108,6 +108,7 @@ public class GeminiClient {
                 actions.addAll(resultActions);
 
             if (processor instanceof ConversationMessageTransformer) {
+                System.out.println("轉換字串"+processor.getClass().getSimpleName());
                 ConversationMessageTransformer
                         transformer = (ConversationMessageTransformer) processor;
                 transformedMessage = transformer.
@@ -115,13 +116,21 @@ public class GeminiClient {
             }
         }
         actions.forEach(ConversationMessageAction::run);
-
+        replyText = transformedMessage;
 
         return replyText != null ? replyText : response;
     }
 
     public void clearConversation() {
         conversationManager.clearHistory();
+    }
+
+    public void endConversation(Player player){
+        VillagerConversation conv = villagerConversationManager.getConversation(player);
+        if(conv == null) return;
+        villagerConversationManager.endConversation(
+                conv
+        );
     }
 
 

@@ -53,7 +53,7 @@ public class TestCommand implements CommandExecutor {
 
             Utils.sendMessage(player, MessageLevel.NORMAL
                     , "&b["+player.getName()+"]: &f"+args[0]);
-            Utils.sendMessage(player, MessageLevel.NORMAL, "已向 AI Studio 發送請求");
+            //Utils.sendMessage(player, MessageLevel.NORMAL, "已向 AI Studio 發送請求");
             String response = this.plugin.getGeminiAPI().getResponse(args[0],player,villager);
 
             if(response == null){

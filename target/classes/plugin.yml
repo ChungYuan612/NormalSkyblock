@@ -6,3 +6,6 @@ commands:
   test:
     description: '向 NPC 發送請求'
     usage: '/test <請求內容>'
+  talk:
+    description: '切換村民對話模式'
+    usage: '/talk'

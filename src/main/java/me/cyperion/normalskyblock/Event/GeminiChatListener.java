@@ -10,6 +10,8 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -52,6 +54,8 @@ public class GeminiChatListener implements Listener {
 
         // 非同步請求 Gemini
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            //villager.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,10000,5,false,false));
+            //不要動
             String reply = plugin.getGeminiAPI().getResponse( userInput);
             player.sendMessage(ChatColor.AQUA + "[Gemini] " + reply);
         });

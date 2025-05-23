@@ -1,5 +1,6 @@
 package me.cyperion.normalskyblock;
 
+import me.cyperion.normalskyblock.Commands.TalkCommand;
 import me.cyperion.normalskyblock.Commands.TestCommand;
 import me.cyperion.normalskyblock.Event.GeminiChatListener;
 import me.cyperion.normalskyblock.GeminiConnection.GeminiAPI;
@@ -18,6 +19,9 @@ public final class NormalSkyblock extends JavaPlugin {
         //ngrokConnection = new NgrokConnection(this);
         geminiAPI = new GeminiAPI(this);
         getCommand("test").setExecutor(new TestCommand(this));
+        TalkCommand talkCommand = new TalkCommand(this);
+        getCommand("talk").setExecutor(talkCommand);
+        getServer().getPluginManager().registerEvents(talkCommand, this);
         geminiChatListener = new GeminiChatListener(this);
         getServer().getPluginManager().registerEvents(geminiChatListener,this);
     }

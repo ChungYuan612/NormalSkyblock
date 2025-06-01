@@ -77,6 +77,7 @@ public class TalkCommand implements CommandExecutor, Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
+        if(!activePlayers.contains(player.getUniqueId())) return;
         ConversationSession session = this.getSession(player);
         if (session == null) return;
 

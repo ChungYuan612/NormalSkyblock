@@ -115,7 +115,10 @@ public class GeminiClient {
                         transformMessage(transformedMessage, conv);
             }
         }
-        actions.forEach(ConversationMessageAction::run);
+        for(ConversationMessageAction action : actions) {
+            action.run();
+        }
+        //actions.forEach(ConversationMessageAction::run);
         replyText = transformedMessage;
 
         return replyText != null ? replyText : response;

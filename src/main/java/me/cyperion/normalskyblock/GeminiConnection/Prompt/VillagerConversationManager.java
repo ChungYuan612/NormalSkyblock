@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.plugin.Plugin;
-//import tj.horner.villagergpt.events.VillagerConversationEndEvent;
-//import tj.horner.villagergpt.events.VillagerConversationStartEvent;
 
 public class VillagerConversationManager {
     private final Plugin plugin;
@@ -72,12 +70,8 @@ public class VillagerConversationManager {
         }
 
         if (conversation == null) {
-            //這個new VillagerConversation 可以獲得系統prompt 並且針對個別玩家、村民的GeminiMessage也在裡面
             conversation = new VillagerConversation(plugin, villager, player);
             conversations.add(conversation);
-
-            //VillagerConversationStartEvent startEvent = new VillagerConversationStartEvent(conversation);
-            //plugin.getServer().getPluginManager().callEvent(startEvent);
         }
 
         return conversation;
@@ -92,9 +86,7 @@ public class VillagerConversationManager {
     private void endConversations(Collection<VillagerConversation> conversationsToEnd) {
         for (VillagerConversation conversation : conversationsToEnd) {
             conversation.ended = true;
-            //VillagerConversationEndEvent endEvent = new VillagerConversationEndEvent(
-            //        conversation.getPlayer(), conversation.getVillager());
-            //plugin.getServer().getPluginManager().callEvent(endEvent);
+
         }
 
         conversations.removeAll(conversationsToEnd);

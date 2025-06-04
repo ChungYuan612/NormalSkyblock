@@ -47,15 +47,14 @@ public class GeminiChatListener implements Listener {
 
         if (!isPlayerActive(player)) return;
 
-        event.setCancelled(true); // 不廣播原始訊息
+        event.setCancelled(true);
 
         String userInput = event.getMessage();
         player.sendMessage(ChatColor.GRAY + "[你] " + userInput);
 
-        // 非同步請求 Gemini
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             //villager.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS,10000,5,false,false));
-            //不要動
+
             String reply = plugin.getGeminiAPI().getResponse( userInput);
             player.sendMessage(ChatColor.AQUA + "[Gemini] " + reply);
         });
